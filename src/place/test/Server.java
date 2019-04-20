@@ -23,8 +23,7 @@ public class Server {
 			counter++;
 			Socket serverClient = ss.accept(); // server accept the client connection request
 			System.out.println("Client No:" + counter + " started!");
-			ServerClientThread sct = new ServerClientThread(serverClient, counter); // send the request to a separate
-																					// thread
+			ServerClientThread sct = new ServerClientThread(serverClient, counter); // send the request to a separate																	// thread
 			sct.start();
 		}
 	}
