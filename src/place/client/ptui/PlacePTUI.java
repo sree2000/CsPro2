@@ -9,7 +9,7 @@ public class PlacePTUI implements Observer {
 
     // board
     PlaceBoard board = new PlaceBoard(10);
-    
+    //
 
     @Override
     public void update(Observable o, Object arg) {
