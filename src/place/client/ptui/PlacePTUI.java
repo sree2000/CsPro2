@@ -35,7 +35,7 @@ public class PlacePTUI implements Observer {
 
             //username
             out.print(username);
-            PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();  //if class of an object to deserialize cannot be found
+            PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
             if (req.getType() == PlaceRequest.RequestType.BOARD) {
                 PlaceBoard board = (PlaceBoard) req.getData();
             } else {      //need way of vvetting...
@@ -45,12 +45,16 @@ public class PlacePTUI implements Observer {
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
-            System.exit(1);
             close();
+            System.exit(1);
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to " + hostName);
-            System.exit(1);
             close();
+            System.exit(1);
+        } catch (ClassNotFoundException e) {
+            System.err.println("Class of server message not found");
+            close();
+            System.exit(1);
         }
     }
 
