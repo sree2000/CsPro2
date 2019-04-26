@@ -1,6 +1,7 @@
 package place.client.ptui;
 
 import place.PlaceBoard;
+import place.client.model.Model;
 import place.network.PlaceRequest;
 
 import java.io.*;
@@ -11,7 +12,7 @@ import java.util.Observer;
 public class PlacePTUI implements Observer {
 
     // board
-    PlaceBoard board;
+    Model model;
     // todo
     // create socket, connect w/ server, establish I/O object (unmodified) streams, and hand logic for sending PlaceTile objects
 
@@ -38,8 +39,11 @@ public class PlacePTUI implements Observer {
             PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
             if (req.getType() == PlaceRequest.RequestType.BOARD) {
                 PlaceBoard board = (PlaceBoard) req.getData();
-            } else {      //need way of vvetting...
-                System.out.println("Username taken");
+                model = new Model(board.getBoard().length);
+                // transfer board info i guess?
+
+            } else {      //need way of vetting...
+                System.out.println("Username unavailable");
                 close();
                 System.exit(0);
             }
