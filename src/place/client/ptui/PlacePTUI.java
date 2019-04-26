@@ -87,5 +87,17 @@ public class PlacePTUI implements Observer {
             // board
 
         }
+        String hostName = args[0];
+        int portNumber = Integer.parseInt(args[1]);
+        String username = args[2];
+
+        Socket s = new Socket(hostName, portNumber);
+        
+        PrintWriter pr = new PrintWriter(s.getOutputStream());
+        
+        InputStreamReader in  = new InputStreamReader(s.getInputStream());
+        BufferedReader bf = new BufferedReader(in);
+        
+        
     }
 }
