@@ -8,6 +8,8 @@ import java.net.*;
 import java.util.Observable;
 import java.util.Observer;
 
+import static place.network.PlaceRequest.RequestType.LOGIN;
+
 public class PlacePTUI implements Observer {
 
     // board
@@ -18,7 +20,7 @@ public class PlacePTUI implements Observer {
     /* The socket connection */
     private Socket socket;
     /* The output stream to the server*/
-    private PrintWriter out;
+    private ObjectOutputStream out;
     /* The input stream from the ReversiServer */
     private ObjectInputStream in;
     /* The Input stream from the command line */
@@ -29,12 +31,14 @@ public class PlacePTUI implements Observer {
 
         try {
             socket = new Socket(hostName, portNumber);
-            out = new PrintWriter(socket.getOutputStream(), true);
+            out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
             stdIn = new BufferedReader(new InputStreamReader(System.in));
 
             //username
-            out.print(username);
+            out.writeUnshared(new PlaceRequest<String>(LOGIN, username));
+
+            //?
             PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
             if (req.getType() == PlaceRequest.RequestType.BOARD) {
                 PlaceBoard board = (PlaceBoard) req.getData();
@@ -87,16 +91,10 @@ public class PlacePTUI implements Observer {
             // board
 
         }
+
         String hostName = args[0];
         int portNumber = Integer.parseInt(args[1]);
         String username = args[2];
-
-        Socket s = new Socket(hostName, portNumber);
-        
-        PrintWriter pr = new PrintWriter(s.getOutputStream());
-        
-        InputStreamReader in  = new InputStreamReader(s.getInputStream());
-        BufferedReader bf = new BufferedReader(in);
         
         
     }
