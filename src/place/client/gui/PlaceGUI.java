@@ -65,6 +65,7 @@ public class PlaceGUI extends Application implements Observer {
         yellow = new Button("F");
 
         buttonList.add(aqua);
+        aqua.setStyle("-fx-background-color: green");
         buttonList.add(black);
         buttonList.add(blue);
         buttonList.add(fuchsia);
@@ -108,7 +109,7 @@ public class PlaceGUI extends Application implements Observer {
                 if ((i+j) % 2 == 0){
                     rect.setFill(Color.GREEN);
                 } else {
-                    rect.setFill(Color.YELLOW);
+                    rect.setFill(Color.BLUE);
                 }
             }
         }

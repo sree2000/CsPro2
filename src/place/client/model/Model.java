@@ -6,6 +6,8 @@ import place.PlaceBoard;
 
 public class Model extends PlaceBoard implements Observable {
 
+
+
     public Model(int DIM){
         super(DIM);
     }

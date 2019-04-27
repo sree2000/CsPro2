@@ -1,14 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556303126455" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Labs/Lab8" />
+  <component name="ChangeListManager">
+    <list default="true" id="0110db64-3140-41e2-8422-a8d63ef3050c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/client/gui/PlaceGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/production/Lab4/place/client/gui/PlaceGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/client/ptui/PlacePTUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/production/Lab4/place/client/ptui/PlacePTUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/server/PlaceServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/server/SCT.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/test/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/test/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/production/Lab4/place/test/ServerClientThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/place/PlaceBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/place/PlaceBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/place/client/NetworkClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/place/client/NetworkClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/place/client/gui/PlaceGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/place/client/gui/PlaceGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/place/client/model/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/place/client/model/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/place/client/ptui/PlacePTUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/place/client/ptui/PlacePTUI.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="RunManager">
+  <component name="FavoritesManager">
+    <favorites_list name="CsPro2" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi2/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="150" column="24" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi_ptui/PTUI_Client2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1275">
+              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi2/NetworkClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/place/client/gui/PlaceGUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1632">
+              <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/place/PlaceColor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="32">
+              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/place/client/model/Model.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#217#218#0" expanded="true" />
+                <element signature="e#243#244#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/place/client/NetworkClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+              <folding>
+                <element signature="e#5940#5941#0" expanded="true" />
+                <element signature="e#5975#5976#0" expanded="true" />
+                <element signature="e#7082#7083#0" expanded="true" />
+                <element signature="e#7110#7111#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/place/PlaceBoard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/place/client/ptui/PlacePTUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2401#2402#0" expanded="true" />
+                <element signature="e#2446#2447#0" expanded="true" />
+                <element signature="e#2941#2942#0" expanded="true" />
+                <element signature="e#2982#2983#0" expanded="true" />
+                <element signature="e#3552#3583#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>refresh</find>
+      <find>update</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Test.java" />
+        <option value="$PROJECT_DIR$/src/HelloWorld.java" />
+        <option value="$PROJECT_DIR$/src/Grid.java" />
+        <option value="$PROJECT_DIR$/src/KenKen.java" />
+        <option value="$PROJECT_DIR$/src/Region.java" />
+        <option value="$PROJECT_DIR$/src/AddRegion.java" />
+        <option value="$PROJECT_DIR$/src/SubtractRegion.java" />
+        <option value="$PROJECT_DIR$/src/DivideRegion.java" />
+        <option value="$PROJECT_DIR$/src/MultiplyRegion.java" />
+        <option value="$PROJECT_DIR$/src/reversi/server/ReversiServer.java" />
+        <option value="$PROJECT_DIR$/src/reversi2/Board.java" />
+        <option value="$PROJECT_DIR$/src/reversi_gui/GUI_Client2.java" />
+        <option value="$PROJECT_DIR$/src/place/client/gui/PlaceGUI.java" />
+        <option value="$PROJECT_DIR$/src/place/client/model/Model.java" />
+        <option value="$PROJECT_DIR$/src/place/client/NetworkClient.java" />
+        <option value="$PROJECT_DIR$/src/place/PlaceBoard.java" />
+        <option value="$PROJECT_DIR$/src/place/client/ptui/PlacePTUI.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="610" />
+    <option name="width" value="763" />
+    <option name="height" value="735" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CsPro2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CsPro2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CsPro2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CsPro2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CsPro2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CsPro2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="place" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556407616680" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.PlacePTUI">
     <configuration name="PlaceGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="place.client.gui.PlaceGUI" />
       <module name="Lab4" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;localhost&quot; &quot;4001&quot; &quot;username&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;localhost&quot; &quot;50001&quot; &quot;username&quot;" />
       <option name="VM_PARAMETERS" value="-p C:&quot;\Program Files&quot;\Java\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.base,javafx.graphics" />
       <extension name="coverage">
         <pattern>
@@ -20,10 +241,288 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlacePTUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="place.client.ptui.PlacePTUI" />
+      <module name="Lab4" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;queeg.cs.rit.edu&quot; &quot;50010&quot; &quot;yert&quot;" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="place.client.ptui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.PlaceGUI" />
+      <item itemvalue="Application.PlacePTUI" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.PlacePTUI" />
         <item itemvalue="Application.PlaceGUI" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0110db64-3140-41e2-8422-a8d63ef3050c" name="Default Changelist" comment="" />
+      <created>1551058385722</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551058385722</updated>
+    </task>
+    <task id="LOCAL-00001" summary="&quot;init&quot;">
+      <created>1551313692848</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1551313692848</updated>
+    </task>
+    <task id="LOCAL-00002" summary="&quot;initialized all classes. wrote Grid and Region classes&quot;">
+      <created>1551376545710</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1551376545710</updated>
+    </task>
+    <task id="LOCAL-00003" summary="&quot;wrote AddRegion, SubtractRegion, MultiplyRegion, and DivideRegion classes&quot;">
+      <created>1551379493066</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1551379493067</updated>
+    </task>
+    <task id="LOCAL-00004" summary="&quot;wrote KenKen&quot;">
+      <created>1551384638351</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1551384638351</updated>
+    </task>
+    <task id="LOCAL-00005" summary="&quot;Commented code&quot;">
+      <created>1551405400984</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1551405400985</updated>
+    </task>
+    <task id="LOCAL-00006" summary="&quot;init&quot;">
+      <created>1554493957173</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1554493957173</updated>
+    </task>
+    <task id="LOCAL-00007" summary="&quot;wrote init for network connection&quot;">
+      <created>1554663133523</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1554663133523</updated>
+    </task>
+    <task id="LOCAL-00008" summary="&quot;finished set up of JavaFX, wrote basis for GUI display&quot;">
+      <created>1554668215520</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1554668215520</updated>
+    </task>
+    <task id="LOCAL-00009" summary="&quot;Implemented Observer / Observable methods with Platform.runlater to establish playable connection between clients&quot;">
+      <created>1554758149679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1554758149679</updated>
+    </task>
+    <task id="LOCAL-00010" summary="&quot;Finished refresh method to update board state and points in HBox&quot;">
+      <created>1554762430911</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1554762430911</updated>
+    </task>
+    <task id="LOCAL-00011" summary="&quot;Commented&quot;">
+      <created>1554766321825</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1554766321825</updated>
+    </task>
+    <task id="LOCAL-00012" summary="&quot;Removed method I wasn't suppose to add to Board class, oops&quot;">
+      <created>1554768112144</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1554768112144</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49833888" weight="0.92738277" />
+      <window_info id="Structure" order="1" sideWeight="0.5016611" side_tool="true" weight="0.47136563" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" weight="0.32859176" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39934534" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3207856" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/place/client/gui/PlaceGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="110" column="24" selection-start-line="110" selection-start-column="24" selection-end-line="110" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/PlaceColor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/network/PlaceRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="60" column="54" selection-start-line="60" selection-start-column="54" selection-end-line="60" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab6/src/reversi/client/ReversiClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab6/src/reversi/Reversi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-476" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab6/src/reversi/server/ReversiServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi_gui/GUI_Client2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9">
+          <caret line="140" column="23" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi2/NetworkClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi_ptui/PTUI_Client2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1275">
+          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Labs/Lab8/src/reversi2/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="150" column="24" selection-start-line="150" selection-start-column="14" selection-end-line="150" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/client/model/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#217#218#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/cs project/src/place/client/NetworkClient.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/client/NetworkClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="19" column="62" lean-forward="true" selection-start-line="19" selection-start-column="62" selection-end-line="19" selection-end-column="62" />
+          <folding>
+            <element signature="e#5940#5941#0" expanded="true" />
+            <element signature="e#5975#5976#0" expanded="true" />
+            <element signature="e#7082#7083#0" expanded="true" />
+            <element signature="e#7110#7111#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/client/ptui/PlacePTUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="101" column="50" selection-start-line="101" selection-start-column="50" selection-end-line="101" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2401#2402#0" expanded="true" />
+            <element signature="e#2446#2447#0" expanded="true" />
+            <element signature="e#2941#2942#0" expanded="true" />
+            <element signature="e#2982#2983#0" expanded="true" />
+            <element signature="e#3552#3583#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/place/PlaceBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="65" column="26" selection-start-line="65" selection-start-column="26" selection-end-line="65" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

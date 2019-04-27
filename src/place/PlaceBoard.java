@@ -1,6 +1,7 @@
 package place;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  * The board is the place that holds the colored tiles.  The server creates
@@ -9,7 +10,7 @@ import java.io.Serializable;
  *
  * @author Sean Strout @ RIT CS
  */
-public class PlaceBoard implements Serializable {
+public class PlaceBoard extends Observable implements Serializable {
     /** The square dimension of the board */
     public final int DIM;
     /** The grid of tiles */
@@ -59,7 +60,10 @@ public class PlaceBoard implements Serializable {
      * @rit.pre row and column constitute a valid board coordinate
      */
     public void setTile(PlaceTile tile) {
+
         this.board[tile.getRow()][tile.getCol()] = tile;
+        setChanged();
+        notifyObservers();
     }
 
     /**
