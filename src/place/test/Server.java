@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Server {
 
@@ -19,12 +21,18 @@ public class Server {
 		System.out.println("waiting for Player one ...");
 		//ServerSocket ss = new ServerSocket(portNumber);
 		int counter = 0;
+		
+		List<ServerClientThread> clients = new ArrayList<ServerClientThread>();
 		while (true) {
 			counter++;
 			Socket serverClient = ss.accept(); // server accept the client connection request
 			System.out.println("Client No:" + counter + " started!");
 			ServerClientThread sct = new ServerClientThread(serverClient, counter); // send the request to a separate																	// thread
 			sct.start();
+			clients.add(sct);
+			for(int i = 0; i < clients.size(); i++) {
+				clients.get(i).prt();
+			}
 		}
 	}
 }

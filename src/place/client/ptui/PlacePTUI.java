@@ -76,7 +76,7 @@ public class PlacePTUI implements Observer {
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnknownHostException, IOException {
         if (args.length != 3) {
             System.out.println("Usage: java PlaceClient host port username");
         } else {
