@@ -2,29 +2,26 @@ package place.client.ptui;
 
 import place.PlaceBoard;
 import place.PlaceColor;
-import place.PlaceTile;
 import place.client.NetworkClient;
-import place.client.model.Model;
-import place.network.PlaceRequest;
-
-import java.io.*;
-import java.net.*;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
 
-import static place.network.PlaceRequest.RequestType.LOGIN;
+/**
+ * The PTUI representation of the Place client.
+ *
+ * @author John McCarroll & Sree Jupudy
+ */
 
 public class PlacePTUI implements Observer {
 
-    // board
+    /* holds state of the board for view */
     PlaceBoard board;
-    // create socket, connect w/ server, establish I/O object (unmodified) streams, and hand logic for sending PlaceTile objects
-
+    /* the helper class that handles all the networking with the server */
     NetworkClient connection;
-
+    /* a Scanner to read command line input */
     Scanner stdIn;
-
+    /* the username of the client */
     String username;
 
     /**
@@ -35,16 +32,28 @@ public class PlacePTUI implements Observer {
         return connection.getBoard(this);
     }
 
+    /**
+     * a helper method to display the board state on the command line
+     */
     public void display(){
         System.out.println(board);
     }
 
+    /**
+     * The overriden update method to update the board state when it the model is changed
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         this.board = this.connection.getModel();
         this.display();
     }
 
+    /**
+     * Takes in a string command and parses it to send a tile change request to server
+     * @param command
+     */
     public void changeTile(String command){
         String[] fields = command.split(" ");
         if (fields.length != 3){
@@ -55,6 +64,11 @@ public class PlacePTUI implements Observer {
         }
     }
 
+    /**
+     * A helper method that returns a PlaceColor from a string
+     * @param str
+     * @return
+     */
     public PlaceColor parseColor(String str){
         switch (str) {
             case "0":
@@ -94,6 +108,11 @@ public class PlacePTUI implements Observer {
         }
     }
 
+    /**
+     * The main method - sets up PlacePTUI object and board, activates the Connection thread to listen for updates, and
+     * begins loop to take command line input
+     * @param args command line arguments on launch
+     */
     public static void main(String[] args) {
         if (args.length != 3) {
             System.out.println("Usage: java PlaceClient host port username");

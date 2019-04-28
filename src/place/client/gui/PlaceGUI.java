@@ -15,31 +15,41 @@ import place.PlaceBoard;
 import place.PlaceColor;
 import place.PlaceTile;
 import place.client.NetworkClient;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * The GUI representaion of the Place Client
+ *
+ * @author John McCarroll & Sree Jupudy
+ */
+
 public class PlaceGUI extends Application implements Observer {
 
-    //local board representation
+    /* holds state of the board for view */
     PlaceBoard board;
-
+    /* the helper class that handles all the networking with the server */
     NetworkClient connection;
-
+    /* the username of the client */
     String username;
-
+    /* the gridpane that holds tile representations for the view */
     GridPane grid;
-
+    /* the current selected color */
     PlaceColor currentColor;
-
-    // color selection buttons
+    /* list of color selection buttons */
     ArrayList<Button> buttonList;
+    /* list of labels for color selection buttons */
     ArrayList<String> labelList;
+    /* list of colors for color selection buttons */
     ArrayList<String> colorList;
 
+    /**
+     * Initializes color selection buttons, server connection, view board, and activates NetworkClient to listen for
+     * updates
+     */
     @Override
     public void init(){
         // establish color selection buttons
@@ -56,8 +66,7 @@ public class PlaceGUI extends Application implements Observer {
         }
 
 
-        //establish connection and model?
-        // Get host info from command line
+        //establish connection from command line args
         List<String> args = getParameters().getRaw();
         this.connection = new NetworkClient(args.get(0), Integer.parseInt(args.get(1)), args.get(2));
         this.username = args.get(2);
@@ -71,8 +80,12 @@ public class PlaceGUI extends Application implements Observer {
 
     }
 
+    /**
+     * Sets up GUI display and event handling
+     * @param primaryStage fx stage
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         // display
 
         int DIM = 10;
@@ -113,6 +126,12 @@ public class PlaceGUI extends Application implements Observer {
 
     }
 
+    /**
+     * An Observer method that updates the view's tiles and tooltips any time the proxy model (in NetworkClient) is
+     * updated.
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         this.board = this.connection.getModel();
@@ -144,6 +163,9 @@ public class PlaceGUI extends Application implements Observer {
         }
     }
 
+    /**
+     * The stop method is called upon exitting the GUI window - stops NetworkClient and program.
+     */
     @Override
     public void stop(){
         connection.setRunning(false);
@@ -151,6 +173,10 @@ public class PlaceGUI extends Application implements Observer {
         System.exit(0);
     }
 
+    /**
+     * A helper method to fill colorList with -fx-background-color strings for coloring color selection buttons
+     * @return filled list of colors
+     */
     public ArrayList<String> buildColorList(){
         ArrayList<String> colors = new ArrayList<>();
         colors.add("-fx-background-color: rgb(0, 0, 0)");
@@ -173,6 +199,10 @@ public class PlaceGUI extends Application implements Observer {
         return colors;
     }
 
+    /**
+     * A helper method to fill labelList with labels for color selection buttons
+     * @return filled list of labels
+     */
     public ArrayList<String> buildLabelList(){
         ArrayList<String> labels = new ArrayList<>();
         labels.add("0");
@@ -197,12 +227,16 @@ public class PlaceGUI extends Application implements Observer {
 
     /**
      * get board from server
-     * @return
+     * @return newest version of model
      */
     public PlaceBoard receiveBoard(){
         return connection.getBoard(this);
     }
 
+    /**
+     * The main method - launches fx application
+     * @param args launch specification
+     */
     public static void main(String[] args) {
         if (args.length != 3) {
             System.out.println("Usage: java PlaceGUI host port username");
@@ -220,7 +254,7 @@ public class PlaceGUI extends Application implements Observer {
     class ButtonHandler1 implements EventHandler<ActionEvent> {
 
         /**
-         * Sends move designated by button event to server
+         * Changes currentColor according to designated button event
          *
          * @param event The event
          */

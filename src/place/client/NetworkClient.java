@@ -19,54 +19,30 @@ import static place.network.PlaceRequest.RequestType.CHANGE_TILE;
 import static place.network.PlaceRequest.RequestType.LOGIN;
 
 /**
- * The client side network interface to a Reversi game server.
- * Each of the two players in a game gets its own connection to the server.
- * This class represents the controller part of a model-view-controller
- * triumvirate, in that part of its purpose is to forward user actions
- * to the remote server.
+ * The client side network interface to a Place server.
  *
- * @author Robert St Jacques @ RIT SE
- * @author Sean Strout @ RIT CS
- * @author James Heliotis @ RIT CS
+ * @author John McCarroll & Sree Jupudy
  */
 public class NetworkClient implements Runnable {
 
-    /**
-     * The {@link Socket} used to communicate with the reversi server.
-     */
+    /* The Socket used to communicate with the Place server */
     private Socket socket;
-
-    /**
-     * The {@link Scanner} used to read requests from the reversi server.
-     */
+    /* The ObjectInputStream used to read requests from the Place server */
     private ObjectInputStream in;
-
-    /**
-     * The {@link PrintStream} used to write responses to the reversi server.
-     */
+    /* The ObjectOutputStream used to write responses to the Place server */
     private ObjectOutputStream out;
-
-    /**
-     * The {@link PlaceBoard} used to keep track of the state of the game.
-     */
-    private PlaceBoard board;       // i think this should be the model that the clients observe
-
+    /* The PlaceBoard used to keep track of the state of the game */
+    private PlaceBoard board;
+    /* a boolean to determine how long NetworkClient listens for updates */
     private boolean running = true;
 
 
     /**
-     * Hook up with a Reversi game server already running and waiting for
-     * two players to connect. Because of the nature of the server
-     * protocol, this constructor actually blocks waiting for the first
-     * message from the server that tells it how big the board will be.
-     * Afterwards a thread that listens for server messages and forwards
-     * them to the game object is started.
+     * Establishes client side socket connection and an in and out stream for communication with server. Calls login.
      *
      * @param hostName the name of the host running the server program
-     * @param portNumber     the port of the server socket on which the server is
-     *                 listening
-     * @param username    the local object holding the state of the game that
-     *                 must be updated upon receiving server messages
+     * @param portNumber the port of the server socket on which the server is listening
+     * @param username the username of the client
      */
     public NetworkClient( String hostName, int portNumber, String username ) {
         System.out.println("Place client connecting to " + hostName + ":" + portNumber);
@@ -95,21 +71,19 @@ public class NetworkClient implements Runnable {
 
 
     /**
-     * Called by the constructor to set up the game board for this player now
-     * that the server has sent the board dimensions with the
-     * {@link } request.
+     * Called by the constructor to establish valid login criteria for client
      *
      * @param username
      */
     public void login( String username ) throws ClassNotFoundException, IOException {
         //username
         out.writeUnshared(new PlaceRequest<String>(LOGIN, username));
-        System.out.println("attempting login");
+        System.out.println("Attempting login");
 
         // login success?
         PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
         if (req.getType().equals(PlaceRequest.RequestType.LOGIN_SUCCESS) && req.getData().equals(username)) {
-            System.out.println("Connection Successful");
+            System.out.println("Login Successful");
         } else {
             System.out.println("Username taken");
             close();
@@ -117,6 +91,11 @@ public class NetworkClient implements Runnable {
         }
     }
 
+    /**
+     * Receives the board PlaceRequest from server and establishes client UI view and observer
+     * @param observer the view
+     * @return the PlaceBoard from server
+     */
     public PlaceBoard getBoard(Observer observer){
         try {
             PlaceRequest<?> request = (PlaceRequest<?>) in.readUnshared();
@@ -144,12 +123,12 @@ public class NetworkClient implements Runnable {
     }
 
     /**
-     * send tile
+     * Creates and sends a PlaceTile object to server
      *
-     * @param row
-     * @param col
-     * @param color
-     * @param username
+     * @param row the row of the new tile
+     * @param col the column of the new tile
+     * @param color the PlaceColor of the new tile
+     * @param username the username of the client
      */
     public void sendTile(int row, int col, PlaceColor color, String username ) {
         Date date = new Date();
@@ -164,18 +143,20 @@ public class NetworkClient implements Runnable {
         }
     }
 
+    /**
+     * A helper method that updates the proxy model when an update is sent by the server
+     * @param tile
+     */
     public void updateModel(PlaceTile tile){
         board.setTile(tile);
     }
 
     /**
-     * Run the main client loop. Intended to be started as a separate
-     * thread internally. This method is made private so that no one
-     * outside will call it or try to start a thread on it.
+     * Run the main client loop. Listens for and handles updates about the model from the server
      */
     public void run() {
 
-        while ( true ) {    // need boolean arg?
+        while ( running ) {
             try {
 
                     PlaceRequest<?> request = (PlaceRequest<?>) in.readUnshared();
@@ -199,10 +180,18 @@ public class NetworkClient implements Runnable {
         this.close();
     }
 
+    /**
+     * Simple board getter
+     * @return Placeboard proxy model
+     */
     public PlaceBoard getModel(){
         return board;
     }
 
+    /**
+     * Simple running setter
+     * @param bool state of running
+     */
     public void setRunning(boolean bool){
         this.running = bool;
     }
