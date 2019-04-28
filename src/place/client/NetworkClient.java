@@ -9,6 +9,8 @@ import place.network.PlaceRequest;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Observer;
 import java.util.Scanner;
@@ -49,26 +51,8 @@ public class NetworkClient implements Runnable {
      */
     private PlaceBoard board;       // i think this should be the model that the clients observe
 
-//    /**
-//     * Sentinel used to control the main game loop.
-//     */
-//    private boolean go;
-//
-//    /**
-//     * Accessor that takes multithreaded access into account
-//     *
-//     * @return whether it ok to continue or not
-//     */
-//    private synchronized boolean goodToGo() {
-//        return this.go;
-//    }
-//
-//    /**
-//     * Multithread-safe mutator
-//     */
-//    private synchronized void stop() {
-//        this.go = false;
-//    }
+    private boolean running = true;
+
 
     /**
      * Hook up with a Reversi game server already running and waiting for
@@ -133,17 +117,6 @@ public class NetworkClient implements Runnable {
         }
     }
 
-    /**
-     * Called when the server sends a message saying that
-     * gameplay is damaged. Ends the game.
-     */
-//    public void error( String arguments ) {
-//        NetworkClient.dPrint( '!' + ERROR + ',' + arguments );
-//        dPrint( "Fatal error: " + arguments );
-//        this.game.error( arguments );
-//        this.stop();
-//    }
-
     public PlaceBoard getBoard(Observer observer){
         try {
             PlaceRequest<?> request = (PlaceRequest<?>) in.readUnshared();
@@ -179,11 +152,15 @@ public class NetworkClient implements Runnable {
      * @param username
      */
     public void sendTile(int row, int col, PlaceColor color, String username ) {
+        Date date = new Date();
+        long time = date.getTime();
+
         try {
-            PlaceTile newTile = new PlaceTile(row, col, username, color, 0L); //need proper timestamp
+            PlaceTile newTile = new PlaceTile(row, col, username, color, time);
             this.out.writeUnshared(new PlaceRequest<PlaceTile>(CHANGE_TILE, newTile));
         } catch (IOException e){
             e.printStackTrace();
+            close();
         }
     }
 
@@ -224,5 +201,9 @@ public class NetworkClient implements Runnable {
 
     public PlaceBoard getModel(){
         return board;
+    }
+
+    public void setRunning(boolean bool){
+        this.running = bool;
     }
 }
