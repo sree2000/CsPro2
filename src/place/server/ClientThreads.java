@@ -59,7 +59,7 @@ public class ClientThreads extends Thread implements Closeable {
     public void run() {
         while(true) {
             try {
-                PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();  //EOFException is cause of bug
+                PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
                 synchronized(this) {
                 	if(req.getType().equals(PlaceRequest.RequestType.LOGIN)) {
                 		if(clientName == null) {
@@ -87,10 +87,6 @@ public class ClientThreads extends Thread implements Closeable {
                         }
 
                         synchronized(board) {
-                            if(board.getTile(tile.getRow(), tile.getCol()).getColor() == tile.getColor()) {
-                                sendError("Tile sent must differ in color from the existing tile.");
-                                continue;
-                            }
 
                             tile = new PlaceTile(
                                 tile.getRow(),

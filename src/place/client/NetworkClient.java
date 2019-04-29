@@ -52,8 +52,6 @@ public class NetworkClient implements Runnable {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
 
-            System.out.println("ay");
-
             login(username);
 
         } catch (UnknownHostException e) {
@@ -117,9 +115,9 @@ public class NetworkClient implements Runnable {
      */
     public void close() {
             try {
-                socket.close();
                 out.close();
                 in.close();
+                socket.close();
 
             } catch (IOException ioe) { ioe.printStackTrace(); }
     }
@@ -139,6 +137,7 @@ public class NetworkClient implements Runnable {
         try {
             PlaceTile newTile = new PlaceTile(row, col, username, color, time);
             this.out.writeUnshared(new PlaceRequest<PlaceTile>(CHANGE_TILE, newTile));
+
         } catch (IOException e){
             e.printStackTrace();
             close();
@@ -166,9 +165,12 @@ public class NetworkClient implements Runnable {
                 if ( request.getType().equals(PlaceRequest.RequestType.TILE_CHANGED) ) {
 
                     updateModel((PlaceTile) request.getData());
+                } else if (((String) request.getData()).split(" ")[0].equals("wait")) {
+                    System.out.println("Error: wait to place next tile");
                 } else {
-                        System.err.println( "Unrecognized request: " + request );
-                        break;
+
+                    System.err.println( "Unrecognized request: " + request );
+                    break;
                 }
             }
             catch( NoSuchElementException nse ) {

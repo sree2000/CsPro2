@@ -134,6 +134,14 @@ public class PlaceGUI extends Application implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
+        Platform.runLater(new Runnable() {
+            public void run() {
+                refresh();
+            }
+        });
+    }
+
+    public void refresh(){
         this.board = this.connection.getModel();
         for (int i = 0; i < board.DIM; i++){
             for (int j = 0; j < board.DIM; j++){
@@ -312,9 +320,6 @@ public class PlaceGUI extends Application implements Observer {
                     currentColor = PlaceColor.FUCHSIA;
                     break;
             }
-
-
         }
     }
-
 }

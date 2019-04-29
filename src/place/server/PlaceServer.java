@@ -11,8 +11,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import place.PlaceBoard;
 import place.PlaceTile;
 import place.client.model.Model;
 
@@ -57,11 +55,8 @@ public class PlaceServer extends Thread {
                     ClientThreads client;
                     try {
                         client = new ClientThreads(connection, board);
-                        /*InetAddress oldAddress =*/ clientList.put(client, address);
+                        clientList.put(client, address);
 
-//                        if(clientList.keySet() != null) {
-//                            oldAddress.close();
-//                        }
                     } catch (SocketTimeoutException e) { // Thrown if setting up the connection times out.
                     	System.out.println("Timed out");
                     	return;
