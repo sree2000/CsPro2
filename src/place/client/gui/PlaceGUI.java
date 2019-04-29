@@ -109,7 +109,7 @@ public class PlaceGUI extends Application implements Observer {
 
             }
         }
-        update(board, new Object());
+        update(new Observable(), new Object());
 
         // color bar
         HBox bar = new HBox();

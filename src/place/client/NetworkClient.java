@@ -31,8 +31,8 @@ public class NetworkClient implements Runnable {
     private ObjectInputStream in;
     /* The ObjectOutputStream used to write responses to the Place server */
     private ObjectOutputStream out;
-    /* The PlaceBoard used to keep track of the state of the game */
-    private PlaceBoard board;
+    /* The Model used to keep track of the state of the game */
+    private Model board;
     /* a boolean to determine how long NetworkClient listens for updates */
     private boolean running = true;
 
@@ -51,6 +51,8 @@ public class NetworkClient implements Runnable {
             socket = new Socket(hostName, portNumber);
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
+
+            System.out.println("ay");
 
             login(username);
 
@@ -99,7 +101,7 @@ public class NetworkClient implements Runnable {
     public PlaceBoard getBoard(Observer observer){
         try {
             PlaceRequest<?> request = (PlaceRequest<?>) in.readUnshared();
-            board = (PlaceBoard) request.getData();
+            board = (Model) request.getData();
             board.addObserver(observer);
         } catch (IOException e) {
             e.printStackTrace();

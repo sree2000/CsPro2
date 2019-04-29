@@ -10,7 +10,7 @@ import java.util.Observable;
  *
  * @author Sean Strout @ RIT CS
  */
-public class PlaceBoard extends Observable implements Serializable {
+public class PlaceBoard implements Serializable {
     /** The square dimension of the board */
     public final int DIM;
     /** The grid of tiles */
@@ -62,8 +62,6 @@ public class PlaceBoard extends Observable implements Serializable {
     public void setTile(PlaceTile tile) {
 
         this.board[tile.getRow()][tile.getCol()] = tile;
-        setChanged();
-        notifyObservers();
     }
 
     /**

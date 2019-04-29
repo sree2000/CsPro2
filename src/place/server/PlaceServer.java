@@ -1,6 +1,7 @@
 package place.server;
 
 import java.io.IOException;
+import java.io.StreamCorruptedException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,18 +14,19 @@ import java.util.stream.Collectors;
 
 import place.PlaceBoard;
 import place.PlaceTile;
+import place.client.model.Model;
 
 public class PlaceServer extends Thread {
 
-    private PlaceBoard board;
-    private Map<InetAddress, ClientThreads> clientList = new HashMap<>();
+    private Model board;
+    private Map<ClientThreads, InetAddress> clientList = new HashMap<>();
     private Set<InetAddress> clientsWaiting = new HashSet<>();
     private ServerSocket primarySocket;
     private int port;
 
     public PlaceServer(int port, int size) {
         this.port = port;
-        this.board = new PlaceBoard(size);
+        this.board = new Model(size);
     }
     public void run() {
         try {
@@ -55,15 +57,15 @@ public class PlaceServer extends Thread {
                     ClientThreads client;
                     try {
                         client = new ClientThreads(connection, board);
+                        /*InetAddress oldAddress =*/ clientList.put(client, address);
 
-                        ClientThreads oldConnection = clientList.put(address, client);
-                        if(oldConnection != null) {
-                            oldConnection.close();
-                        }
+//                        if(clientList.keySet() != null) {
+//                            oldAddress.close();
+//                        }
                     } catch (SocketTimeoutException e) { // Thrown if setting up the connection times out.
                     	System.out.println("Timed out");
                     	return;
-                    } catch (java.io.StreamCorruptedException e) {
+                    } catch (StreamCorruptedException e) {
                         System.out.println("Corrupted stream");
                         return;
                     } catch(IOException e) {
@@ -76,7 +78,7 @@ public class PlaceServer extends Thread {
                     }
                     synchronized(this) {
                         System.out.println(clientList.size());
-                        if (clientList.size() > (board.DIM/4)) {
+                        if (clientList.size() > (board.DIM/2)) {
                             System.out.printf("Too many people are connected "
                             		+ "please try again " + address.getHostName());
                             client.sendError("Too many people were connected to " +
@@ -129,7 +131,7 @@ public class PlaceServer extends Thread {
         String username = requestedUsername;
         HashSet<String> usernames;
         synchronized(this) {
-            usernames = clientList.values()
+            usernames = clientList.keySet()
                                     .stream()
                                     .map(ClientThreads::getUsername)
                                     .collect(Collectors.toCollection(HashSet::new));
@@ -141,7 +143,7 @@ public class PlaceServer extends Thread {
     }
     
     private void sendToAll(PlaceTile tile) {
-        clientList.values().stream().parallel().forEach(c -> c.tileChange(tile));
+        clientList.keySet().stream().parallel().forEach(c -> c.tileChange(tile));
     }
     
     private void removeClient(ClientThreads client) {

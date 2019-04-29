@@ -13,13 +13,14 @@ import java.util.function.Consumer;
 
 import place.PlaceBoard;
 import place.PlaceTile;
+import place.client.model.Model;
 import place.network.PlaceRequest;
 
 public class ClientThreads extends Thread implements Closeable {
 
     private Socket connection;
     private String clientName;
-    private PlaceBoard board;
+    private Model board;
     private Consumer<PlaceTile> tileBeingRecived;
     private Consumer<String> attemptingLogingIn;
     private List<Runnable> onDisconnect = new ArrayList<>();
@@ -28,7 +29,7 @@ public class ClientThreads extends Thread implements Closeable {
     private Instant waitToPlace = Instant.EPOCH;
     private static int TIMEOUT = 2000;
 
-    public ClientThreads(Socket socket, PlaceBoard board) throws IOException, SocketTimeoutException {
+    public ClientThreads(Socket socket, Model board) throws IOException, SocketTimeoutException {
         this.board = board;
         this.connection = socket;
         this.connection.setSoTimeout(TIMEOUT);
@@ -58,7 +59,7 @@ public class ClientThreads extends Thread implements Closeable {
     public void run() {
         while(true) {
             try {
-                PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();
+                PlaceRequest<?> req = (PlaceRequest<?>) in.readUnshared();  //EOFException is cause of bug
                 synchronized(this) {
                 	if(req.getType().equals(PlaceRequest.RequestType.LOGIN)) {
                 		if(clientName == null) {
@@ -115,6 +116,7 @@ public class ClientThreads extends Thread implements Closeable {
                     connection.close();
                 } catch(IOException e2) { }
                 onDisconnect.forEach(Runnable::run);
+                e.printStackTrace();
                 break;
             } catch(ClassNotFoundException e) {
                 System.out.printf("Incorrect data recived from client " + getIdentifier());
