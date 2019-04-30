@@ -17,15 +17,26 @@ import place.client.model.Model;
 public class PlaceServer extends Thread {
 
     private Model board;
-    private Map<ClientThreads, InetAddress> clientList = new HashMap<>();
+    private Map<ServerClientThreads, InetAddress> clientList = new HashMap<>();
     private Set<InetAddress> clientsWaiting = new HashSet<>();
     private ServerSocket primarySocket;
     private int port;
 
+    /**
+     * Constructor for the Server class to get the port number and size of the board
+     * 
+     * @param port the port number
+     * @param size the dimensions of the board
+     */
     public PlaceServer(int port, int size) {
         this.port = port;
         this.board = new Model(size);
     }
+    
+    /**
+     * The run command that runs everything and keeps track 
+     * of the client threads and sends messages to the clients
+     */
     public void run() {
         try {
             primarySocket = new ServerSocket(port);
@@ -37,9 +48,7 @@ public class PlaceServer extends Thread {
                     InetAddress address = connection.getInetAddress();
                     synchronized(clientsWaiting) {
                         if(clientsWaiting.contains(address)) {
-                            System.out.printf("Info: Rejecting connection " +
-                                    "from %s due to pre-existing pending " +
-                                    "connection.%n", address.getHostName());
+                            System.out.printf("Connection reject for" + address.getHostName());
                             try {
                                 connection.close();
                             } catch(IOException e) {
@@ -52,12 +61,12 @@ public class PlaceServer extends Thread {
                         }
                     }
 
-                    ClientThreads client;
+                    ServerClientThreads client;
                     try {
-                        client = new ClientThreads(connection, board);
+                        client = new ServerClientThreads(connection, board);
                         clientList.put(client, address);
 
-                    } catch (SocketTimeoutException e) { // Thrown if setting up the connection times out.
+                    } catch (SocketTimeoutException e) { 
                     	System.out.println("Timed out");
                     	return;
                     } catch (StreamCorruptedException e) {
@@ -78,7 +87,7 @@ public class PlaceServer extends Thread {
                             		+ "please try again " + address.getHostName());
                             client.sendError("Too many people were connected to " +
                                     "Please try connecting ");
-                            removeClient(client);
+                            clientList.remove(client.getSocket().getInetAddress(), client);
                             try {
                                 connection.close();
                             } catch (IOException e) {
@@ -90,7 +99,7 @@ public class PlaceServer extends Thread {
 
                     client.registerOnLoginAttempt(uname -> loginClient(client, uname));
                     client.registerOnTileReceived(this::sendToAll);
-                    client.registerOnDisconnect(() -> removeClient(client));
+                    client.registerOnDisconnect(() -> clientList.remove(client.getSocket().getInetAddress(), client));
 
                     System.out.printf("Info: Client %s connected.%n", client.getIdentifier());
                     client.start();
@@ -104,6 +113,11 @@ public class PlaceServer extends Thread {
             throw new RuntimeException(e);
         }
     }
+    
+    /**
+     * Main method responsible for starting the run of the code
+     * @param args the arguments supplied through command line(port number and dimension)
+     */
     public static void main(String[] args) {
         if(args.length <2) {
             System.out.println("Usage: java PlaceServer <port> <size>/n Not enough arguments");
@@ -121,14 +135,19 @@ public class PlaceServer extends Thread {
         }
     }
     
-    private void loginClient(ClientThreads client, String requestedUsername) {
+    /**
+     * determined whether the client can login or not
+     * @param client the actual client and the info that is needed
+     * @param requestedUsername the username the client has picked out
+     */
+    private void loginClient(ServerClientThreads client, String requestedUsername) {
     	int ID = 0;
         String username = requestedUsername;
         HashSet<String> usernames;
         synchronized(this) {
             usernames = clientList.keySet()
                                     .stream()
-                                    .map(ClientThreads::getUsername)
+                                    .map(ServerClientThreads::getUsername)
                                     .collect(Collectors.toCollection(HashSet::new));
         }
         while(usernames.contains(username)) {
@@ -136,12 +155,12 @@ public class PlaceServer extends Thread {
         }
         client.usernameAssignments(username);
     }
-    
+    /**
+     * sends the tile placement to all the clients
+     * 
+     * @param tile the new tile object being sent
+     */
     private void sendToAll(PlaceTile tile) {
         clientList.keySet().stream().parallel().forEach(c -> c.tileChange(tile));
-    }
-    
-    private void removeClient(ClientThreads client) {
-        clientList.remove(client.getSocket().getInetAddress(), client);
     }
 }

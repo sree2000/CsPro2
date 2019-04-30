@@ -16,7 +16,7 @@ import place.PlaceTile;
 import place.client.model.Model;
 import place.network.PlaceRequest;
 
-public class ClientThreads extends Thread implements Closeable {
+public class ServerClientThreads extends Thread implements Closeable {
 
     private Socket connection;
     private String clientName;
@@ -29,7 +29,14 @@ public class ClientThreads extends Thread implements Closeable {
     private Instant waitToPlace = Instant.EPOCH;
     private static int TIMEOUT = 2000;
 
-    public ClientThreads(Socket socket, Model board) throws IOException, SocketTimeoutException {
+    /**
+     * Constructor that initializes all the things used for server side communications
+     * @param socket the socket that is need to connect to
+     * @param board the board for the server
+     * @throws IOException
+     * @throws SocketTimeoutException
+     */
+    public ServerClientThreads(Socket socket, Model board) throws IOException, SocketTimeoutException {
         this.board = board;
         this.connection = socket;
         this.connection.setSoTimeout(TIMEOUT);
@@ -56,6 +63,10 @@ public class ClientThreads extends Thread implements Closeable {
         });
     }
 
+    /**
+     * the run overrides the run from the super thread class and also checks what 
+     * the client is sending the server and how to act on it
+     */
     public void run() {
         while(true) {
             try {
@@ -120,6 +131,10 @@ public class ClientThreads extends Thread implements Closeable {
         }
     }
 
+    /**
+     * the tile changer that is told to the clients
+     * @param tile the tile object that needs to be changed/updated
+     */
     public synchronized void tileChange(PlaceTile tile) {
         try {
             out.writeUnshared(
@@ -140,6 +155,12 @@ public class ClientThreads extends Thread implements Closeable {
         } 
     }
 
+    /**
+     * giving each user a board and the login success command
+     * 
+     * @param username the username that getting sent the board and a successful login
+     * @throws IllegalStateException
+     */
     public synchronized void usernameAssignments(String username) throws IllegalStateException {
         if(clientName == null) {
             clientName = username;
@@ -152,17 +173,34 @@ public class ClientThreads extends Thread implements Closeable {
             throw new IllegalStateException("Username has already been taken");
         }
     }
+    
+    /**
+     * instantiating attemptingLogingIn
+     * @param loginAttempt the actual information
+     */
     public synchronized void registerOnLoginAttempt(Consumer<String> loginAttempt) {
         attemptingLogingIn = attemptingLogingIn.andThen(loginAttempt);
     }
+    /**
+     * instantiating tileBeingRecived
+     * @param tileReceived the tile being received
+     */
     public synchronized void registerOnTileReceived(Consumer<PlaceTile> tileReceived) {
         tileBeingRecived = tileBeingRecived.andThen(tileReceived);
     }
 
+    /**
+     * disconnecting the useg
+     * @param disconnect the runnable being disconnected
+     */
     public synchronized void registerOnDisconnect(Runnable disconnect) {
         onDisconnect.add(disconnect);
     }
 
+    /**
+     * getter for the identity of the connection
+     * @return a string to identify which identifier
+     */
     public String getIdentifier() {
         if(clientName == null) {
             return "with ip address " + connection.getInetAddress().getHostName();
@@ -171,14 +209,25 @@ public class ClientThreads extends Thread implements Closeable {
         }
     }
 
+    /**
+     * the getter for the username
+     * @return the name of the client
+     */
     public String getUsername() {
         return clientName;
     }
 
+    /**
+     * getter for the socket connection
+     * @return Socket connection of the socket
+     */
     public Socket getSocket() {
         return connection;
     }
 
+    /**
+     * closes the connection
+     */
     public void close() throws IOException {
         connection.close();
     }
